@@ -90,7 +90,7 @@ void ADOAccess::DoInitADOConn(){
     ::CoInitialize(NULL);
     try{
         m_pConnection.CreateInstance("ADODB.Connection");
-		_bstr_t strConnect = ConnectString;
+		_bstr_t strConnect = CONFIG_ConnectString;
         m_pConnection->Open(strConnect, "", "", adModeUnknown);
         //printf("Connect to DB successed.\n");
     } catch (_com_error e) {
