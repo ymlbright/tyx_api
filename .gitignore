@@ -1,6 +1,11 @@
 Debug
 Release
 Config.h
-test.mdb
+*.mdb
+*.ldb
 *.tli
 *.tlh
+*.ncb
+*.opt
+*.plg
+*.py

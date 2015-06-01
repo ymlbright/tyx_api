@@ -3,6 +3,17 @@
 #include "AdoAccess.h"
 #include "Config.h"
 
+bool secruity_check(char *);
+
+bool secruity_check(char *str){
+    while (*str){
+        if ( *str == '\'' )
+            return false;
+        str++;
+    }
+    return true;
+}
+
 ADOAccess::ADOAccess(){
     DoInitADOConn();
 }
@@ -15,7 +26,7 @@ inline CString GetCollect(_RecordsetPtr pRecord, char* collect){
     var = pRecord->GetCollect(collect);
     if ( var.vt != VT_NULL )
         return (LPCSTR)_bstr_t(var);
-    return CString("");
+    return CString(" ");
 }
 
 CString ADOAccess::Query(CString strSQL, char* column[], size_t column_n){
@@ -25,7 +36,7 @@ CString ADOAccess::Query(CString strSQL, char* column[], size_t column_n){
         pQueryRecordset->Open(_variant_t(strSQL), m_pConnection.GetInterfacePtr(), adOpenDynamic, adLockOptimistic, adCmdText);
         if ( pQueryRecordset->adoBOF && pQueryRecordset->adoEOF ){
             pQueryRecordset->Close();
-            return CString("");
+            return CString(" ");
         } else {
             CString result;
             for ( size_t i = 0; i<column_n-1; i++)
@@ -37,20 +48,24 @@ CString ADOAccess::Query(CString strSQL, char* column[], size_t column_n){
     } catch (_com_error e) {
         printf("DB error when execute '%s'\n  %s", strSQL, e.ErrorMessage());
         pQueryRecordset->Close();
-        return CString("");
+        return CString(" ");
     }
 }
 
 bool ADOAccess::IdentityCheck(char* card, char* pwd){
     CString strSQL;
     static char* column="studentNo";
+    if ( !secruity_check(card) || !secruity_check(pwd) )
+        return false;
     strSQL.Format("SELECT studentNo FROM STUDENT WHERE studentNo='%s' AND passWord='%s'", card, pwd);
-    return Query(strSQL, &column, 1)!=CString("");
+    return Query(strSQL, &column, 1)!=CString(" ");
 }
 
 CString ADOAccess::GetPaoCao(char* card){
     CString strSQL;
     static char* column="C1";
+    if ( !secruity_check(card) )
+        return CString(" ");
     strSQL.Format("SELECT C1 FROM SportCheck WHERE studentNo='%s'", card);
     return Query(strSQL, &column, 1);
 }
@@ -82,6 +97,8 @@ CString ADOAccess::GetHealthScore(char* card){
     column[21] = "lieScore";                //仰卧起坐/引体向上分数
     column[22] = "lieConclusion";           //仰卧起坐/引体向上评价
     column[23] = "conclusion";              //总分
+    if ( !secruity_check(card) )
+        return CString(" ");
     strSQL.Format("SELECT * FROM healthscore WHERE studentNo='%s'", card);
     return Query(strSQL, column, 24);
 }
