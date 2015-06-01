@@ -11,7 +11,7 @@
 #define MAX_FUNC 2
 
 
-typedef    struct _RemoteAPIData{
+typedef struct _RemoteAPIData{
     char funcId;
     char apiKey[32];
     unsigned char cardLen;
@@ -75,10 +75,10 @@ void init_socket(){
 }
 void socket_listen(){
     listen(GlobalInfo.socketConn, 1024);
-    ResumeThread(GlobalInfo.hListenProcess);
     for ( int i = 0; i<CONFIG_WorkerProcessNum; i++)
         if ( GlobalInfo.hWorkerProcess[i] != NULL )
             ResumeThread(GlobalInfo.hWorkerProcess[i]);
+    ResumeThread(GlobalInfo.hListenProcess);
 }
 
 void close_socket(){
@@ -86,7 +86,7 @@ void close_socket(){
     CloseHandle(GlobalInfo.hListenProcess);
     printf("listen process stoped, waitting for worker process finished ...\n");
     
-    Sleep(3000);
+    Sleep(6000);
 
     printf("worker process finished,  stopping worker process ...\n");
     for ( int i = 0; i<CONFIG_WorkerProcessNum; i++){

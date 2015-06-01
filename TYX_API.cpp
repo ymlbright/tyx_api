@@ -12,12 +12,6 @@ int main(int argc, char* argv[])
 	init_socket();
 	printf(" finished\nlistening ...\n\n");
 	socket_listen();
-	// ADOAccess *ADB;
-	// ADB = new ADOAccess();
-	// printf("%d\n", ADB->IdentityCheck("213120498","213120498"));
-	// printf("%s\n", ADB->GetPaoCao("213120498"));
-	// printf("%s\n", ADB->GetHealthScore("213121455"));
-	// delete ADB;
 	printf("input exit to end services.\n");
 	while( strcmp( p, "exit") ){
 		printf(">");

@@ -6,14 +6,14 @@
 --------------------Configuration: TYX_API - Win32 Release--------------------
 </h3>
 <h3>Command Lines</h3>
-Creating temporary file "C:\Users\Brightx\AppData\Local\Temp\RSP7566.tmp" with contents
+Creating temporary file "C:\Users\Brightx\AppData\Local\Temp\RSP65F4.tmp" with contents
 [
 /nologo /MD /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_CONSOLE" /D "_MBCS" /D "_AFXDLL" /Fo"Release/" /Fd"Release/" /FD /c 
 "E:\VC60_MFC\TYX_API\AdoAccess.cpp"
 "E:\VC60_MFC\TYX_API\ListenSocket.cpp"
 "E:\VC60_MFC\TYX_API\TYX_API.cpp"
 ]
-Creating command line "cl.exe @C:\Users\Brightx\AppData\Local\Temp\RSP7566.tmp" 
+Creating command line "cl.exe @C:\Users\Brightx\AppData\Local\Temp\RSP65F4.tmp" 
 Creating command line "link.exe /nologo /subsystem:console /incremental:no /pdb:"Release/TYX_API.pdb" /machine:I386 /out:"Release/TYX_API.exe"  .\Release\AdoAccess.obj .\Release\ListenSocket.obj .\Release\TYX_API.obj "
 <h3>Output Window</h3>
 Compiling...
@@ -31,14 +31,14 @@ TYX_API.exe - 0 error(s), 0 warning(s)
 --------------------Configuration: TYX_API - Win32 Debug--------------------
 </h3>
 <h3>Command Lines</h3>
-Creating temporary file "C:\Users\Brightx\AppData\Local\Temp\RSP796D.tmp" with contents
+Creating temporary file "C:\Users\Brightx\AppData\Local\Temp\RSP6A0B.tmp" with contents
 [
 /nologo /MD /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_CONSOLE" /D "_MBCS" /D "_AFXDLL" /Fo"Debug/" /Fd"Debug/" /FD /GZ /c 
 "E:\VC60_MFC\TYX_API\AdoAccess.cpp"
 "E:\VC60_MFC\TYX_API\ListenSocket.cpp"
 "E:\VC60_MFC\TYX_API\TYX_API.cpp"
 ]
-Creating command line "cl.exe @C:\Users\Brightx\AppData\Local\Temp\RSP796D.tmp" 
+Creating command line "cl.exe @C:\Users\Brightx\AppData\Local\Temp\RSP6A0B.tmp" 
 Creating command line "link.exe /nologo /subsystem:console /incremental:yes /pdb:"Debug/TYX_API.pdb" /debug /machine:I386 /out:"Debug/TYX_API.exe" /pdbtype:sept  .\Debug\AdoAccess.obj .\Debug\ListenSocket.obj .\Debug\TYX_API.obj "
 <h3>Output Window</h3>
 Compiling...
