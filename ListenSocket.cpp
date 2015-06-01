@@ -61,6 +61,10 @@ void init_socket(){
         exit(-1);
     }
 
+    int timeout=100;
+    setsockopt(GlobalInfo.socketConn, SOL_SOCKET, SO_RCVTIMEO, (const char*)&timeout, sizeof(int));
+    setsockopt(GlobalInfo.socketConn, SOL_SOCKET, SO_SNDTIMEO, (const char*)&timeout, sizeof(int));
+
     SECURITY_ATTRIBUTES ai;
     ai.nLength = sizeof(SECURITY_ATTRIBUTES);
     ai.bInheritHandle = true ;
