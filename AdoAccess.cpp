@@ -94,7 +94,8 @@ void ADOAccess::DoInitADOConn(){
         m_pConnection->Open(strConnect, "", "", adModeUnknown);
         //printf("Connect to DB successed.\n");
     } catch (_com_error e) {
-        //printf("Connect to DB failed.\n");
+        printf("Connect to DB failed.\n");
+        exit(-2);
     }
 }
 
