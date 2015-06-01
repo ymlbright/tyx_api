@@ -69,7 +69,7 @@ void init_socket(){
     ai.nLength = sizeof(SECURITY_ATTRIBUTES);
     ai.bInheritHandle = true ;
     ai.lpSecurityDescriptor = NULL ;
-    if (!CreatePipe(&(GlobalInfo.hPipeRead), &(GlobalInfo.hPipeWrite), &ai , 1024*1024)){
+    if (!CreatePipe(&(GlobalInfo.hPipeRead), &(GlobalInfo.hPipeWrite), &ai , 0)){
         printf("create pipe error[%d].\n", GetLastError());
         exit(-1);
     }
