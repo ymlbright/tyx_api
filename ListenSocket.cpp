@@ -65,7 +65,7 @@ void init_socket(){
     ai.nLength = sizeof(SECURITY_ATTRIBUTES);
     ai.bInheritHandle = true ;
     ai.lpSecurityDescriptor = NULL ;
-    if (!CreatePipe(&(GlobalInfo.hPipeRead), &(GlobalInfo.hPipeWrite), &ai ,0 )){
+    if (!CreatePipe(&(GlobalInfo.hPipeRead), &(GlobalInfo.hPipeWrite), &ai , 1024*1024)){
         printf("create pipe error[%d].\n", GetLastError());
         exit(-1);
     }
@@ -194,9 +194,10 @@ DWORD WINAPI worker_process(LPVOID lpParam){
     RemoteAPIData apiData;
     char buffer[CONFIG_BufferLength];
     unsigned int dataLen;
+	DWORD dwByte;
 
     while(true){
-       if ( ReadFile(GlobalInfo->hPipeRead, (LPVOID)&acceptSocket, sizeof(SOCKET), NULL, NULL) ) {
+       if ( ReadFile(GlobalInfo->hPipeRead, (LPVOID)&acceptSocket, sizeof(SOCKET), &dwByte, NULL) ) {
             if ( init_apidata(acceptSocket, &apiData) ){
                 if ( !strncmp(apiData.apiKey, CONFIG_APISecret, 32) ){
                     if ( apiData.funcId < MAX_FUNC ) {
@@ -220,10 +221,12 @@ DWORD WINAPI worker_process(LPVOID lpParam){
 DWORD WINAPI listen_process(LPVOID lpParam){
     _GlobalInfo* GlobalInfo = (_GlobalInfo*)lpParam;
     SOCKET acceptSocket;
+	DWORD dwByte;
+
     while(true){
         acceptSocket = accept(GlobalInfo->socketConn, NULL, NULL);
         if ( acceptSocket!= INVALID_SOCKET ){
-            if ( !WriteFile(GlobalInfo->hPipeWrite, (LPVOID)&acceptSocket, sizeof(SOCKET), NULL, NULL) ) {
+            if ( !WriteFile(GlobalInfo->hPipeWrite, (LPVOID)&acceptSocket, sizeof(SOCKET), &dwByte, NULL) ) {
                 send(acceptSocket, CONFIG_SocketErrorMsg, CONFIG_SocketErrorMsgLen, 0);
                 closesocket(acceptSocket);
             }
