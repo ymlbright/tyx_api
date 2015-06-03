@@ -5,6 +5,7 @@
 #include <string.h>
 #include "ListenSocket.h"
 
+
 int main(int argc, char* argv[])
 {
 	char p[1024];
@@ -12,6 +13,7 @@ int main(int argc, char* argv[])
 	init_socket();
 	printf(" finished\nlistening ...\n\n");
 	socket_listen();
+
 	printf("input exit to end services.\n");
 	while( strcmp( p, "exit") ){
 		printf(">");

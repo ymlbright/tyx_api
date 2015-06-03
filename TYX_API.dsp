@@ -96,6 +96,10 @@ SOURCE=.\ListenSocket.cpp
 # End Source File
 # Begin Source File
 
+SOURCE=.\Logger.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=.\TYX_API.cpp
 # End Source File
 # End Group
@@ -113,6 +117,10 @@ SOURCE=.\Config.h
 # Begin Source File
 
 SOURCE=.\ListenSocket.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\Logger.h
 # End Source File
 # End Group
 # Begin Group "Resource Files"
